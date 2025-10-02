@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Pro(props) {
 
 
@@ -8,7 +10,15 @@ export default function Pro(props) {
         >
             <div className=" bg-[#ffffff31] w-[500px] h-[350px] rounded-[50px] shadow-[rgba(0,0,0,0.3)] shadow-2xl flex items-center justify-center max-sm:p-1 max-sm:w-[100%] max-sm:h-[250px]">
                 <div className="w-[450px]  max-sm:w-[95%] max-sm:max-h-[200px] rounded-xl overflow-hidden shadow-[rgba(0,0,0,0.2)] shadow-2xl ">
-                    <img src={props.img} alt="" />
+                    <Image
+
+                        alt={"project image"}
+                        src={props.img}
+                        width={500}
+                        height={500}
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcAAAAEwCAIAAADr9bF0AAAAA3NCSVQICAjb4U/gAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAABJRU5ErkJggg=="
+                    />
                 </div>
             </div>
             <div className="flex items-center justify-between w-full pt-7 px-2">

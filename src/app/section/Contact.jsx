@@ -7,12 +7,12 @@ export default function Contact() {
     const phoneNumber = "963934865509";
     const message = encodeURIComponent("مرحبًا، أود التواصل معك.");
     return (
-        <section className=" relative pt-20 max-sm:pt-10 flex items-center  w-full justify-center pb-5 min-h-[100vh]" id="Contact">
+        <section className=" relative pt-20  flex items-center  w-full justify-center pb-5 min-h-[100vh]" id="Contact">
             <div className="flex items-center justify-center w-full ">
 
 
 
-              
+
                 <div className="flex items-center w-full justify-center flex-col
             text-white pt-1 
             ">
@@ -141,6 +141,9 @@ export default function Contact() {
                             </a>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
 
