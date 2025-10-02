@@ -1,0 +1,65 @@
+import Button from "../components/Button"
+import { words } from "../constanst"
+
+words
+const Hero = () => {
+  return (
+    <section id="Home" className=" flex relative md:mt-14 items-center justify-between flex-wrap
+   
+    ">
+      <div className="absolute top-0 left-0 z-10">
+        <img src="/images/bg.png" alt="" />
+      </div>
+      {/* left */}
+      <div className="relative z-10 xl:mt-20 mt-32  flex xl:items-center items-start justify-center">
+        <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
+          <div className="flex flex-col gap-7">
+            <div className="hero-text">
+              <h1>
+                Shaping
+                <span className="slide">
+                  <span className="wrapper">
+                    {words.map((word, index) => (
+                      <span
+                        key={index}
+                        className="flex items-center md:gap-3 gap-1 pb-2"
+                      >
+                        <img
+                          src={word.imgPath}
+                          alt="person"
+                          className="xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50"
+                        />
+                        <span>{word.text}</span>
+                      </span>
+                    ))}
+                  </span>
+                </span>
+              </h1>
+              <h1>into Real Projects</h1>
+              <h1>that Deliver Results</h1>
+            </div>
+
+            <p className="text-white-50 md:text-xl relative   z-10 pointer-events-none">
+              Hi, I’m Hussen, a developer based in Syria with a passion for
+              code.
+            </p>
+
+            <Button
+              text="See My Work"
+              className="md:w-80 md:h-16 w-60 h-12"
+              id="counter"
+            />
+          </div>
+        </header>
+      </div>
+      {/* right */}
+      <div className="flex items-center justify-center max-lg:w-full">
+      <iframe className=" md:w-[500px] md:h-[500px] w-[400px] h-[400px] bg-black" src="https://my.spline.design/genkubgreetingrobot-wb5p13F14Ml2t9r9s2zGpzou/">
+      </iframe>
+      </div>
+
+    </section>
+  )
+}
+
+export default Hero
