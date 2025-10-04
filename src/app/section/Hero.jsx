@@ -1,10 +1,12 @@
+"use client"
+import Image from "next/image"
 import Button from "../components/Button"
 import { words } from "../constanst"
 
 words
 const Hero = () => {
   return (
-    <section id="Home" className=" flex relative md:pt-14 items-center justify-between flex-wrap
+    <section id="Home" className=" flex relative  md:pt-14 items-center justify-between flex-wrap
    
     ">
       <div className="absolute top-0 left-0 z-10">
@@ -53,9 +55,20 @@ const Hero = () => {
         </header>
       </div>
       {/* right */}
-      <div className="flex items-center justify-center max-lg:w-full">
-      <iframe className=" md:w-[500px] md:h-[500px] w-[400px] h-[400px] bg-black" src="https://my.spline.design/genkubgreetingrobot-wb5p13F14Ml2t9r9s2zGpzou/">
-      </iframe>
+      <div className="flex items-center justify-center  max-lg:w-full">
+        <iframe className=" md:w-[500px] md:h-[500px] max-md:hidden bg-black" src="https://my.spline.design/genkubgreetingrobot-wb5p13F14Ml2t9r9s2zGpzou/">
+        </iframe>
+
+
+        <Image
+
+        className="md:hidden w-[300px] h-[300px] rounded-full object-cover object-right mt-16 "
+        src="/images/hussen.jpg"
+        width={500}
+        height={500}
+        />
+
+
       </div>
 
     </section>
