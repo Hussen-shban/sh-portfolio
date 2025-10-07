@@ -25,6 +25,7 @@ body {
 .mona {
   font-family: "Mona Sans", sans-serif;
 }
+
 section {
   width: 100dvw;
 }
@@ -34,46 +35,60 @@ section {
   width: 2px;
   height: 130%;
   transform: translateY(100px);
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 0, 0) 0%,   
-    #ff5e0033 25%,               
-    #ff5e00cb 50%,                 
-    #ff5e00 75%,            
-    #ff5e00 100%               
-  );
+  background: linear-gradient(0deg,
+      rgba(255, 255, 0, 0) 0%,
+      #ff5e0033 25%,
+      #ff5e00cb 50%,
+      #ff5e00 75%,
+      #ff5e00 100%);
 }
 
 .gradient-line1 {
   width: 2px;
   height: 130%;
   transform: translateY(100px);
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 255, 0) 0%,     
-    #1e8fff2c 25%,                
-    #4169e1 50%,               
-    #76ade4  75%,             
-    #0e467e  100%                 
-  );
+  background: linear-gradient(0deg,
+      rgba(0, 0, 255, 0) 0%,
+      #1e8fff2c 25%,
+      #4169e1 50%,
+      #76ade4 75%,
+      #0e467e 100%);
 }
 
 .gradient-line2 {
   width: 2px;
   height: 130%;
   transform: translateY(100px);
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0) 0%,         
-    #000000 25%,                
-    #333333 50%,                
-    #555555 75%,              
-    #000000 100%                
-  );
+  background: linear-gradient(0deg,
+      rgba(0, 0, 0, 0) 0%,
+      #000000 25%,
+      #333333 50%,
+      #555555 75%,
+      #000000 100%);
 }
 
 
+.bg-hidden {
+  background: url(/images/egg.png) center/cover no-repeat;
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  min-height: 100vh;
+  mask-image: radial-gradient(circle 250px at var(--x) var(--y), rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
+  -webkit-mask-image: radial-gradient(circle 250px at var(--x) var(--y), rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
+  
+  z-index: 10;
+  /* background-color: red; */
+  opacity: 0;
+  transition: opacity 0.5s ease, filter 0.3s ease;
+  filter: blur(15px);
+}
 
+.bg-hidden.active {
+  opacity: 1;
+  filter: blur(2px);
+
+}
 
 
 
@@ -162,7 +177,7 @@ section {
   }
 
   .hero-text {
-    @apply flex flex-col justify-center md:text-[60px] text-[30px] font-semibold relative z-10 pointer-events-none;
+    @apply flex flex-col justify-center md:text-[60px] text-[30px] font-semibold relative z-10 ;
 
     img {
       @apply size-8 md:size-10 object-contain;
@@ -260,7 +275,7 @@ section {
 }
 
 
-/* From Uiverse.io by aadium */ 
+/* From Uiverse.io by aadium */
 .card {
   background-color: #1e2127;
   border: 3px solid #61dafb;

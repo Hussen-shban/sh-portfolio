@@ -2,15 +2,39 @@
 import Image from "next/image"
 import Button from "../components/Button"
 import { words } from "../constanst"
+import { useEffect, useState } from "react"
 
 words
 const Hero = () => {
+
+  const [lighton, setlighton] = useState(false)
+
+  useEffect(() => {
+    if (!lighton) return
+
+    const bgHidden = document.querySelector('.bg-hidden')
+
+
+    const handleMouseMove = (e) => {
+      bgHidden.style.setProperty('--x', `${e.clientX}px`)
+      bgHidden.style.setProperty('--y', `${e.clientY}px`)
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [lighton])
+
+
   return (
     <section id="Home" className=" flex relative  md:pt-14 items-center justify-between flex-wrap
    
     ">
       <div className="absolute top-0 left-0 z-10">
         <img src="/images/bg.png" alt="" />
+      </div>
+
+      <div className={`bg-hidden ${lighton ? "active" : ""}`}>
+
       </div>
       {/* left */}
       <div className="relative z-10 xl:mt-20 mt-32  flex xl:items-center items-start justify-center">
@@ -41,7 +65,14 @@ const Hero = () => {
               <h1>that Deliver Results</h1>
             </div>
 
-            <p className="text-white-50 md:text-xl relative   z-10 pointer-events-none">
+            <p onClick={(e) => {
+              setlighton(prev => !prev);
+              const bgHidden = document.querySelector('.bg-hidden');
+              if (bgHidden) {
+                bgHidden.style.setProperty('--x', `${e.clientX}px`);
+                bgHidden.style.setProperty('--y', `${e.clientY}px`);
+              }
+            }} className="text-white-50 md:text-xl relative   z-[600] cursor-pointer">
               Hi, I’m Hussen, a developer based in Syria with a passion for
               code.
             </p>
@@ -62,10 +93,11 @@ const Hero = () => {
 
         <Image
 
-        className="md:hidden w-[300px] h-[300px] rounded-full object-cover object-right mt-16 "
-        src="/images/hussen.jpg"
-        width={500}
-        height={500}
+          className="md:hidden w-[300px] h-[300px] rounded-full object-cover object-right mt-16 "
+          src="/images/hussen.jpg"
+          width={500}
+          height={500}
+          alt="hussen"
         />
 
 

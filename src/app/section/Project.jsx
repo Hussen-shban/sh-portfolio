@@ -1,7 +1,6 @@
 
 "use client"
 import { useEffect, useRef } from "react";
-// import { Ecommerce, ecommerce, fresh, hoobank, NETFLIX, social, weather } from "../assets";
 import 'aos/dist/aos.css';
 import Aos from "aos";
 import Pro from "../components/pro";
