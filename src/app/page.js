@@ -5,6 +5,7 @@ import Skills from "./section/Skills";
 import Contact from "./section/Contact";
 import Nav from "./components/Nav";
 import Skeleton from "./components/Skeleton";
+import Lamp from "./components/Lamp";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Skills />
       <Contact />
       <Skeleton/>
+
 
 
     </div>
