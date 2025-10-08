@@ -4,6 +4,7 @@ import Project from "./section/Project";
 import Skills from "./section/Skills";
 import Contact from "./section/Contact";
 import Nav from "./components/Nav";
+import Skeleton from "./components/Skeleton";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Project />
       <Skills />
       <Contact />
+      <Skeleton/>
 
 
     </div>
