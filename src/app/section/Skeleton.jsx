@@ -18,7 +18,7 @@ const Skeleton = () => {
             className="flex justify-center items-center relative h-full overflow-hidden"
         >
 
-            <div className=" absolute z-[200] bottom-[30%] right-[5%] max-sm:top-[10%]">
+            <div className=" absolute h-fit z-[200] bottom-[30%] right-[5%] max-sm:top-[10%]">
                 <Music/>
             </div>
             <div className="absolute z-50 left-[5%] bottom-[40%]">
