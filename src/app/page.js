@@ -4,8 +4,9 @@ import Project from "./section/Project";
 import Skills from "./section/Skills";
 import Contact from "./section/Contact";
 import Nav from "./components/Nav";
-import Skeleton from "./components/Skeleton";
+import Skeleton from "./section/Skeleton";
 import Lamp from "./components/Lamp";
+import Music from "./components/Music";
 
 export default function Home() {
   return (
@@ -17,8 +18,10 @@ export default function Home() {
       <Experience />
       <Project />
       <Skills />
-      <Contact />
       <Skeleton/>
+
+      <Contact />
+
 
 
 
