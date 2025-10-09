@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import React, { useRef, useState } from 'react'
 
-const Music = () => {
+const Music = ({handleStop,handlePlay,handlePause}) => {
 
 
     const [musicon, setMusicon] = useState(false)
@@ -15,8 +15,10 @@ const Music = () => {
 
         if (newState) {
             musicRef.current.play()
+            handlePlay()
         } else {
             musicRef.current.pause()
+            handlePause()
         }
     }
 
@@ -33,6 +35,7 @@ const Music = () => {
     const handleEnded = () => {
         setProgress(0)
         setMusicon(false)
+        handleStop()
 
     }
 
@@ -40,7 +43,9 @@ const Music = () => {
     return (
         <div className=''>
             <div className="audio-player w-screen  ">
-                <div className="album-cover overflow-hidden">
+                <div
+                className={`${musicon ? "rotat" :"paused"} album-cover overflow-hidden`}
+                >
                     <Image
                         src='/images/roadjack.jpg'
                         width={100}

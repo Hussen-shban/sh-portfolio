@@ -11,7 +11,19 @@ import Image from "next/image";
 const Skeleton = () => {
     const containerRef = useRef(null);
     const draggableRef = useRef(null);
+    const lottieRef = useRef();
 
+    const handlePlay = () => {
+        lottieRef.current.play();
+    };
+
+    const handlePause = () => {
+        lottieRef.current.pause();
+    };
+
+    const handleStop = () => {
+        lottieRef.current.stop();
+    };
     return (
         <div
             ref={containerRef}
@@ -19,7 +31,11 @@ const Skeleton = () => {
         >
 
             <div className=" absolute h-fit z-[200] bottom-[30%] right-[5%] max-sm:top-[10%]">
-                <Music/>
+                <Music
+                    handlePause={handlePause}
+                    handlePlay={handlePlay}
+                    handleStop={handleStop}
+                />
             </div>
             <div className="absolute z-50 left-[5%] bottom-[40%]">
 
@@ -40,8 +56,11 @@ const Skeleton = () => {
                         }}
                     >
                         <Lottie
+
+                            lottieRef={lottieRef}
                             animationData={animationData}
                             loop
+                            autoplay={false}
                             style={{ width: 200, height: 200 }}
                         />
                     </div>
@@ -54,10 +73,10 @@ const Skeleton = () => {
 
             <div className="absolute z-[200] bottom-[10%] right-[41%] max-sm:bottom-[15%] max-sm:right-[20%] h-fit">
                 <Image
-                src="/images/mic.png"
-                width={50}
-                height={50}
-                alt="mic"
+                    src="/images/mic.png"
+                    width={50}
+                    height={50}
+                    alt="mic"
                 />
 
             </div>
