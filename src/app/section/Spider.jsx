@@ -12,6 +12,7 @@ const Spider = () => {
   const bubble2 = useRef(null);
   const bubble3 = useRef(null);
   const ghost = useRef(null);
+  const musicRef = useRef(null);
 
   const messages = [
     "Hello handsome 👋 Click on me!",
@@ -48,8 +49,16 @@ const Spider = () => {
         { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
       );
     }
-  };
 
+
+  };
+  useEffect(() => {
+    if (messages[messageIndex] === "Boo! Scared yet? 😂" && musicRef.current) {
+      musicRef.current.currentTime = 0; // إعادة الصوت من البداية
+      musicRef.current.play();
+    }
+  }, [messageIndex]);
+  
   // إعدادات الهزة
   const SHAKE_THRESHOLD = 18;
   const SHAKE_TIMEOUT = 600;
@@ -159,6 +168,15 @@ const Spider = () => {
           <Image src="/images/ghost.png" width={200} height={200} alt="ghost" />
         </div>
       </div>
+
+      <audio
+                ref={musicRef}
+
+               
+            >
+                <source src="/music/Boo - Sound Effect(MP3_160K).mp3" type="audio/mpeg" />
+
+            </audio>
 
       <div className="absolute bottom-10 text-sm opacity-70">
         shakes: {shakeCount}/3
