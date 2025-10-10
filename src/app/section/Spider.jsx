@@ -15,7 +15,7 @@ const Spider = () => {
 
   const messages = [
     "Hello handsome 👋 Click on me!",
-    "Why did you shake the screen and scare me? 😈",
+    "Why did you shake the screen",
     "I’m watching you 👀",
     "Boo! Scared yet? 😂",
     "Hehehehe... 👻"
