@@ -4,30 +4,58 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
 const Spider = () => {
-  const [on, setOn] = useState(false);
+  const [messageIndex, setMessageIndex] = useState(0);
+  const [on, setOn] = useState(false); // الشبح ظاهر أو لا
   const [shakeCount, setShakeCount] = useState(0);
+
   const bubble1 = useRef(null);
   const bubble2 = useRef(null);
   const bubble3 = useRef(null);
   const ghost = useRef(null);
 
-  // إعدادات الحركة
-  const SHAKE_THRESHOLD = 18; // الحساسية
-  const SHAKE_TIMEOUT = 600; // الزمن بين كل هزة مسموحة (ms)
-  const SHAKE_COOLDOWN = 4000; // الوقت اللي يمنع تكرار التفعيل (ms)
+  const messages = [
+    "Hello handsome 👋 Click on me!",
+    "Why did you shake the screen and scare me? 😈",
+    "I’m watching you 👀",
+    "Boo! Scared yet? 😂",
+    "Hehehehe... 👻"
+  ];
 
+  // عند النقر على الشبح لتغيير النصوص
+  const handleGhostClick = () => {
+    if (messageIndex >= messages.length - 1) {
+      // آخر جملة → إخفاء كل شيء
+      gsap.to([ghost.current, bubble1.current, bubble2.current, bubble3.current], {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power1.out"
+      });
+    } else {
+      // أنيميشن تكبير وتصغير
+      gsap.fromTo(
+        ghost.current,
+        { scale: 1 },
+        { scale: 1.2, duration: 0.2, yoyo: true, repeat: 1, ease: "power1.inOut" }
+      );
+
+      // تغيير النص
+      setMessageIndex((prev) => prev + 1);
+
+      // حركة Fade + Slide للنص
+      gsap.fromTo(
+        bubble3.current,
+        { opacity: 0, y: -10 },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+      );
+    }
+  };
+
+  // إعدادات الهزة
+  const SHAKE_THRESHOLD = 18;
+  const SHAKE_TIMEOUT = 600;
   let lastShakeTime = 0;
 
-  useEffect(() => {
-    if (on) {
-      // أنيميشن GSAP
-      gsap.to(bubble1.current, { opacity: 1, duration: 1, delay: 1 });
-      gsap.to(bubble2.current, { opacity: 1, duration: 0.5, delay: 1.3 });
-      gsap.to(bubble3.current, { opacity: 1, duration: 0.5, delay: 1.5 });
-      gsap.to(ghost.current, { opacity: 1, duration: 2 });
-    }
-  }, [on]);
-
+  // useEffect لتفعيل الهز
   useEffect(() => {
     let lastX = null,
       lastY = null,
@@ -50,19 +78,21 @@ const Spider = () => {
       const deltaY = Math.abs(y - lastY);
       const deltaZ = Math.abs(z - lastZ);
       const shakeStrength = deltaX + deltaY + deltaZ;
-
       const now = Date.now();
 
-      // التحقق من الهزة
       if (shakeStrength > SHAKE_THRESHOLD && now - lastShakeTime > SHAKE_TIMEOUT) {
         lastShakeTime = now;
         setShakeCount((prev) => {
           const newCount = prev + 1;
-          console.log(`Shake #${newCount}`);
           if (newCount >= 3) {
-            // بعد 3 هزات، شغّل التأثير
-            setOn(true);
-            setTimeout(() => setShakeCount(0), SHAKE_COOLDOWN);
+            setOn(true); // إظهار الشبح + الفقاعات
+            setMessageIndex(0); // إعادة الجملة الأولى
+            gsap.to([ghost.current, bubble1.current, bubble2.current, bubble3.current], {
+              opacity: 1,
+              duration: 0.5,
+              ease: "power1.out"
+            });
+            return 0; // إعادة عداد الهز
           }
           return newCount;
         });
@@ -73,7 +103,7 @@ const Spider = () => {
       lastZ = z;
     };
 
-    // طلب الإذن لأجهزة iPhone
+    // طلب إذن أجهزة iPhone
     const initMotion = async () => {
       if (
         typeof DeviceMotionEvent !== "undefined" &&
@@ -83,8 +113,6 @@ const Spider = () => {
           const permission = await DeviceMotionEvent.requestPermission();
           if (permission === "granted") {
             window.addEventListener("devicemotion", handleMotion, true);
-          } else {
-            alert("⚠️ الرجاء السماح باستخدام مستشعر الحركة لتفعيل التأثير.");
           }
         } catch (err) {
           console.error("Permission error:", err);
@@ -108,9 +136,9 @@ const Spider = () => {
           <div className="relative">
             <div
               ref={bubble3}
-              className="absolute top-[0px] left-[15px] opacity-0 w-[100px] text-[12px] h-16 px-2 flex items-center justify-center bg-white rounded-full text-black"
+              className="absolute top-[0px] left-[15px] opacity-0 w-[120px] text-[12px] h-16 px-2 flex items-center justify-center bg-white rounded-full text-black shadow-md"
             >
-              <p className="text-center">my name hussen sh</p>
+              <p className="text-center">{messages[messageIndex]}</p>
             </div>
             <div
               ref={bubble2}
@@ -123,12 +151,15 @@ const Spider = () => {
           </div>
         </div>
 
-        <div className="opacity-0" ref={ghost}>
+        <div
+          ref={ghost}
+          className="opacity-0 cursor-pointer"
+          onClick={handleGhostClick}
+        >
           <Image src="/images/ghost.png" width={200} height={200} alt="ghost" />
         </div>
       </div>
 
-      {/* عداد الهزّات */}
       <div className="absolute bottom-10 text-sm opacity-70">
         shakes: {shakeCount}/3
       </div>
