@@ -5,13 +5,15 @@ import React, { useEffect, useRef, useState } from "react";
 
 const Spider = () => {
   const [messageIndex, setMessageIndex] = useState(0);
-  const [on, setOn] = useState(false); // الشبح ظاهر أو لا
+  const [on, setOn] = useState(false); 
   const [shakeCount, setShakeCount] = useState(0);
 
   const bubble1 = useRef(null);
   const bubble2 = useRef(null);
   const bubble3 = useRef(null);
   const ghost = useRef(null);
+  const bgghost = useRef(null);
+
   const musicRef = useRef(null);
 
   const messages = [
@@ -22,10 +24,8 @@ const Spider = () => {
     "Hehehehe... 👻"
   ];
 
-  // عند النقر على الشبح لتغيير النصوص
   const handleGhostClick = () => {
     if (messageIndex >= messages.length - 1) {
-      // آخر جملة → إخفاء كل شيء
       gsap.to([ghost.current, bubble1.current, bubble2.current, bubble3.current], {
         opacity: 0,
         duration: 0.5,
@@ -54,17 +54,16 @@ const Spider = () => {
   };
   useEffect(() => {
     if (messages[messageIndex] === "Boo! Scared yet? 😂" && musicRef.current) {
-      musicRef.current.currentTime = 0; // إعادة الصوت من البداية
+      musicRef.current.currentTime = 0; 
       musicRef.current.play();
     }
   }, [messageIndex]);
   
-  // إعدادات الهزة
   const SHAKE_THRESHOLD = 18;
   const SHAKE_TIMEOUT = 600;
   let lastShakeTime = 0;
 
-  // useEffect لتفعيل الهز
+  
   useEffect(() => {
     let lastX = null,
       lastY = null,
@@ -94,14 +93,15 @@ const Spider = () => {
         setShakeCount((prev) => {
           const newCount = prev + 1;
           if (newCount >= 3) {
-            setOn(true); // إظهار الشبح + الفقاعات
-            setMessageIndex(0); // إعادة الجملة الأولى
+            setOn(true); 
+            setMessageIndex(0); 
             gsap.to([ghost.current, bubble1.current, bubble2.current, bubble3.current], {
               opacity: 1,
               duration: 0.5,
               ease: "power1.out"
             });
-            return 0; // إعادة عداد الهز
+            gsap.to(bgghost,{zIndex: 700 , duration: 0.5 })
+            return 0; 
           }
           return newCount;
         });
@@ -112,7 +112,6 @@ const Spider = () => {
       lastZ = z;
     };
 
-    // طلب إذن أجهزة iPhone
     const initMotion = async () => {
       if (
         typeof DeviceMotionEvent !== "undefined" &&
@@ -139,7 +138,10 @@ const Spider = () => {
   }, []);
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-black text-white">
+    <div 
+    ref={bgghost}
+    style={{ zIndex: -700 }}
+    className="w-screen h-screen flex fixed top-0 left-0   items-center justify-center bg-black text-white">
       <div className="relative">
         <div className="absolute top-[-30%] left-[70%]">
           <div className="relative">

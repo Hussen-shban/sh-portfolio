@@ -4,7 +4,7 @@ import { nav } from "../constanst"
 
 const Nav = () => {
     return (
-        <nav className="fixed w-full bg-black  flex items-center justify-between px-20 py-5 z-[100]
+        <nav className="fixed w-full bg-black  flex items-center justify-between px-20 py-5 z-[600]
         max-sm:p-[20px]
         ">
 
