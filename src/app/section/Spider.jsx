@@ -16,6 +16,10 @@ const Spider = () => {
 
   const musicRef = useRef(null);
 
+function handlee(){
+  setOn(true)
+}
+
   const messages = [
     "Hello handsome 👋 Click on me!",
     "Why did you shake the screen",
@@ -29,20 +33,20 @@ const Spider = () => {
       gsap.to([ghost.current, bubble1.current, bubble2.current, bubble3.current], {
         opacity: 0,
         duration: 0.5,
-        ease: "power1.out"
+        ease: "power1.out",
+        onComplete: () => {
+          setTimeout(() => setOn(false), 500);
+        },
       });
-    } else {
-      // أنيميشن تكبير وتصغير
+    }  else {
       gsap.fromTo(
         ghost.current,
         { scale: 1 },
         { scale: 1.2, duration: 0.2, yoyo: true, repeat: 1, ease: "power1.inOut" }
       );
 
-      // تغيير النص
       setMessageIndex((prev) => prev + 1);
 
-      // حركة Fade + Slide للنص
       gsap.fromTo(
         bubble3.current,
         { opacity: 0, y: -10 },
@@ -100,7 +104,6 @@ const Spider = () => {
               duration: 0.5,
               ease: "power1.out"
             });
-            gsap.to(bgghost,{zIndex: 700 , duration: 0.5 })
             return 0; 
           }
           return newCount;
@@ -139,8 +142,8 @@ const Spider = () => {
 
   return (
     <div 
-    ref={bgghost}
-    style={{ zIndex: -700 }}
+    style={{ zIndex: on ? 700 : -400 }}
+    
     className="w-screen h-screen flex fixed top-0 left-0   items-center justify-center bg-black text-white">
       <div className="relative">
         <div className="absolute top-[-30%] left-[70%]">
@@ -180,7 +183,11 @@ const Spider = () => {
 
             </audio>
 
-
+<button
+onClick={handlee}
+>
+  asdw
+</button>
     </div>
   );
 };
