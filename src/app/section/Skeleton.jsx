@@ -27,17 +27,17 @@ const Skeleton = () => {
     return (
         <div
             ref={containerRef}
-            className="flex justify-center items-center relative h-full overflow-hidden"
+            className=" section-padding flex justify-center items-center relative h-full overflow-hidden"
         >
 
-            <div className=" absolute h-fit z-[200] bottom-[30%] right-[5%] max-sm:top-[10%]">
+            <div className=" absolute h-fit z-[200] bottom-[30%] right-[5%] max-sm:top-[20%]">
                 <Music
                     handlePause={handlePause}
                     handlePlay={handlePlay}
                     handleStop={handleStop}
                 />
             </div>
-            <div className="absolute z-50 left-[5%] bottom-[40%]">
+            <div className="absolute z-50 left-[5%] bottom-[40%] max-sm:bottom-[28%]">
 
 
 
@@ -61,7 +61,8 @@ const Skeleton = () => {
                             animationData={animationData}
                             loop
                             autoplay={false}
-                            style={{ width: 200, height: 200 }}
+                            // style={{ width: 200, height: 200 }}
+                            className=" w-[200px] h-[200px] max-sm:w-[150px] max-sm:h-[150px]"
                         />
                     </div>
                 </Draggable>
@@ -71,12 +72,14 @@ const Skeleton = () => {
                 <Lamp />
             </div>
 
-            <div className="absolute z-[200] bottom-[10%] right-[41%] max-sm:bottom-[15%] max-sm:right-[20%] h-fit">
+            <div className="absolute z-[200] bottom-[10%] right-[41%] max-sm:bottom-[12%] max-sm:right-[20%] h-fit">
                 <Image
                     src="/images/mic.png"
                     width={50}
                     height={50}
                     alt="mic"
+
+                    className=" w-[50px]  max-sm:w-[40px] "
                 />
 
             </div>

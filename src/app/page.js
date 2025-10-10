@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import Skeleton from "./section/Skeleton";
 import Lamp from "./components/Lamp";
 import Music from "./components/Music";
+import Spider from "./section/Spider";
 
 export default function Home() {
   return (
@@ -19,6 +20,8 @@ export default function Home() {
       <Project />
       <Skills />
       <Skeleton/>
+
+      <Spider/>
 
       <Contact />
 

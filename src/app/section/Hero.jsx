@@ -26,7 +26,7 @@ const Hero = () => {
 
 
   return (
-    <section id="Home" className=" flex relative  md:pt-14 items-center justify-between flex-wrap
+    <section id="Home" className=" flex relative min-h-screen  md:pt-14 items-center justify-between flex-wrap
    
     ">
       <div className="absolute top-0 left-0 z-10">
