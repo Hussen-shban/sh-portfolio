@@ -178,9 +178,7 @@ const Spider = () => {
 
             </audio>
 
-      <div className="absolute bottom-10 text-sm opacity-70">
-        shakes: {shakeCount}/3
-      </div>
+
     </div>
   );
 };
