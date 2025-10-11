@@ -5,8 +5,6 @@ import Skills from "./section/Skills";
 import Contact from "./section/Contact";
 import Nav from "./components/Nav";
 import Skeleton from "./section/Skeleton";
-import Lamp from "./components/Lamp";
-import Music from "./components/Music";
 import Spider from "./section/Spider";
 
 export default function Home() {

@@ -28,12 +28,12 @@ const Skills = () => {
 
                 ))}
 
-                <button
+                {/* <button
                     onClick={handleClick}
                     className="px-6 py-3 bg-pink-500 text-white rounded-xl text-lg"
                 >
                     🎉 Celebrate!
-                </button>
+                </button> */}
             </div>
         </section>
     )

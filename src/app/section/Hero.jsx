@@ -3,6 +3,7 @@ import Image from "next/image"
 import Button from "../components/Button"
 import { words } from "../constanst"
 import { useEffect, useState } from "react"
+import Swal from "sweetalert2"
 
 words
 const Hero = () => {
@@ -23,7 +24,41 @@ const Hero = () => {
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [lighton])
+  const secretWord = "sh";
+  let typed = "";
 
+  useEffect(() => {
+      const handleKeyDown = (event) => {
+          typed += event.key.toLowerCase();
+
+          if (typed.length > secretWord.length) {
+              typed = typed.slice(-secretWord.length);
+          }
+
+          if (typed === secretWord) {
+              typed = "";
+              Swal.fire({
+                  title: "You are the King of Easter Eggs! 🥚👑 Dance like Ricardo and celebrate! 💃",
+                  width: 600,
+                  padding: "3em",
+                  color: "#716add",
+                  background: "#fff ",
+                  backdrop: `
+                    rgba(0,0,0,0.85)
+                    url("/images/ricardo.gif")
+                    left top
+                    no-repeat
+                  `
+              })
+          }
+      };
+
+      document.addEventListener("keydown", handleKeyDown);
+
+      return () => {
+          document.removeEventListener("keydown", handleKeyDown);
+      };
+  }, []);
 
   return (
     <section id="Home" className=" flex relative min-h-screen  md:pt-14 items-center justify-between flex-wrap

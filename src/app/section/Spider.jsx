@@ -16,9 +16,7 @@ const Spider = () => {
 
   const musicRef = useRef(null);
 
-function handlee(){
-  setOn(true)
-}
+
 
   const messages = [
     "Hello handsome 👋 Click on me!",
@@ -183,11 +181,7 @@ function handlee(){
 
             </audio>
 
-<button
-onClick={handlee}
->
-  asdw
-</button>
+
     </div>
   );
 };

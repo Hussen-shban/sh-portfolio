@@ -274,7 +274,9 @@ button {
     @apply flex flex-col justify-center items-center;
   }
 }
-
+.swal2-modal{
+  padding: 20px !important;
+}
 @layer components {
 
   .section-padding {
