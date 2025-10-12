@@ -18,7 +18,7 @@ const easterEggReducer = (state, action) => {
                 return state
             }
 
-            if (state.foundIds.length < 5) {
+            if (state.foundIds.length < 4) {
                 const update = [...state.foundIds, action.payload]
                 return { ...state, foundIds: update, count: update.length }
             }
