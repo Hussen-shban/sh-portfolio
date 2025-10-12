@@ -1,8 +1,13 @@
 "use client"
 import { Link } from "react-scroll";
+import { useEasterEgg } from "../context/EasterEggContext";
+import Swal from "sweetalert2";
 
 
 export default function Contact() {
+    const secretWord = "sh";
+    let typed = "";
+    const { foundEgg } = useEasterEgg()
 
     const phoneNumber = "963934865509";
     const message = encodeURIComponent("مرحبًا، أود التواصل معك.");
@@ -61,7 +66,37 @@ export default function Contact() {
                             <a href="mailto:hussenshban200041@gmail.com?subject=Hello&body=I would like to contact you.">hussenshban200041@gmail.com</a>
 
 
-                            <input type="text" className="border-none outline-0 text-black" />
+
+
+                            <input
+                                className="border-none outline-0 text-black"
+                                type="text"
+                                onChange={(e) => {
+                                    typed += e.target.value.slice(-1).toLowerCase();
+
+                                    if (typed.length > secretWord.length) {
+                                        typed = typed.slice(-secretWord.length);
+                                    }
+
+                                    if (typed === secretWord) {
+                                        foundEgg(4)
+                                        typed = "";
+                                        Swal.fire({
+                                            title: "You are the King of Easter Eggs! 🥚👑 Dance like Ricardo and celebrate! 💃",
+                                            width: 600,
+                                            padding: "3em",
+                                            color: "#716add",
+                                            background: "#fff ",
+                                            backdrop: `
+                    rgba(0,0,0,0.85)
+                    url("/images/ricardo.gif")
+                    left top
+                    no-repeat
+                  `
+                                        })
+                                    }
+                                }}
+                            />
                         </div>
 
                         <div className="text-[#7a7a7a] max-xs:text-[14px]  flex items-start flex-col">
