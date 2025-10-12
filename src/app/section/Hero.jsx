@@ -4,12 +4,13 @@ import Button from "../components/Button"
 import { words } from "../constanst"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
+import { useEasterEgg } from "../context/EasterEggContext"
 
 words
 const Hero = () => {
 
   const [lighton, setlighton] = useState(false)
-
+  const { foundEgg } = useEasterEgg()
   useEffect(() => {
     if (!lighton) return
 
@@ -28,40 +29,41 @@ const Hero = () => {
   let typed = "";
 
   useEffect(() => {
-      const handleKeyDown = (event) => {
-          typed += event.key.toLowerCase();
+    const handleKeyDown = (event) => {
+      typed += event.key.toLowerCase();
 
-          if (typed.length > secretWord.length) {
-              typed = typed.slice(-secretWord.length);
-          }
+      if (typed.length > secretWord.length) {
+        typed = typed.slice(-secretWord.length);
+      }
 
-          if (typed === secretWord) {
-              typed = "";
-              Swal.fire({
-                  title: "You are the King of Easter Eggs! 🥚👑 Dance like Ricardo and celebrate! 💃",
-                  width: 600,
-                  padding: "3em",
-                  color: "#716add",
-                  background: "#fff ",
-                  backdrop: `
+      if (typed === secretWord) {
+        foundEgg(4)
+        typed = "";
+        Swal.fire({
+          title: "You are the King of Easter Eggs! 🥚👑 Dance like Ricardo and celebrate! 💃",
+          width: 600,
+          padding: "3em",
+          color: "#716add",
+          background: "#fff ",
+          backdrop: `
                     rgba(0,0,0,0.85)
                     url("/images/ricardo.gif")
                     left top
                     no-repeat
                   `
-              })
-          }
-      };
+        })
+      }
+    };
 
-      document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
-      return () => {
-          document.removeEventListener("keydown", handleKeyDown);
-      };
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   return (
-    <section id="Home" className=" flex relative min-h-screen  md:pt-14 items-center justify-between flex-wrap
+    <section id="Home" className=" flex relative min-h-screen pt-5  md:pt-14 items-center justify-between flex-wrap
    
     ">
       <div className="absolute top-0 left-0 z-10">
@@ -101,6 +103,7 @@ const Hero = () => {
             </div>
 
             <p onClick={(e) => {
+              foundEgg(1)
               setlighton(prev => !prev);
               const bgHidden = document.querySelector('.bg-hidden');
               if (bgHidden) {

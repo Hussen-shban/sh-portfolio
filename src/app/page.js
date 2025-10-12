@@ -6,20 +6,21 @@ import Contact from "./section/Contact";
 import Nav from "./components/Nav";
 import Skeleton from "./section/Skeleton";
 import Spider from "./section/Spider";
+import EasterEgg from "./components/EasterEgg";
 
 export default function Home() {
   return (
     <div className=" " >
 
       <Nav />
-
+      <EasterEgg />
       <Hero />
       <Experience />
       <Project />
       <Skills />
-      <Skeleton/>
+      <Skeleton />
 
-      <Spider/>
+      <Spider />
 
       <Contact />
 

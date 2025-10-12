@@ -1,28 +1,34 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Lamp from "../components/Lamp";
 import Lottie from "lottie-react";
 import animationData from "../constanst/lotties/death-dance.json";
 import Draggable from "react-draggable";
 import Music from "../components/Music";
 import Image from "next/image";
+import { useEasterEgg } from "../context/EasterEggContext";
 
 const Skeleton = () => {
     const containerRef = useRef(null);
     const draggableRef = useRef(null);
     const lottieRef = useRef();
-
+    const { foundEgg } = useEasterEgg()
+    const [isLampOn, setIsLampOn] = useState(false);
     const handlePlay = () => {
         lottieRef.current.play();
+        foundEgg()
+        setIsLampOn(true)
     };
 
     const handlePause = () => {
         lottieRef.current.pause();
+        setIsLampOn(false);
     };
 
     const handleStop = () => {
         lottieRef.current.stop();
+        setIsLampOn(false);
     };
     return (
         <div
@@ -37,21 +43,18 @@ const Skeleton = () => {
                     handleStop={handleStop}
                 />
             </div>
-            <div className="absolute z-50 left-[5%] bottom-[40%] max-sm:bottom-[28%]">
+            <div className="absolute z-50 right-[31%] bottom-[12%]  max-sm:bottom-[14%] max-sm:right-[-2%]">
 
 
 
                 <Draggable
                     nodeRef={draggableRef}
-                    bounds={{ left: -100, right: 1100, top: -390, bottom: 80 }}        >
+                    bounds={{ left: -750, right: 400, top: -390, bottom: 80 }}        >
                     <div
                         ref={draggableRef}
                         className="cursor-grab active:cursor-grabbing"
                         style={{
-                            position: "absolute",
-                            top: "50%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)",
+
                             transition: "transform 0.2s ease-out", // 💫 السلاسة
                         }}
                     >
@@ -69,7 +72,7 @@ const Skeleton = () => {
             </div>
 
             <div className="relative">
-                <Lamp />
+            <Lamp isOn={isLampOn} />
             </div>
 
             <div className="absolute z-[200] bottom-[10%] right-[41%] max-sm:bottom-[12%] max-sm:right-[20%] h-fit">

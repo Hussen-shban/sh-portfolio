@@ -32,9 +32,9 @@ export default function Contact() {
                         new projects or just for chatting
                     </p>
                     <button
-                        className="bg-gradient-to-t from-black to-white/10 text-white  py-2 px-4
+                        className="!bg-gradient-to-t !from-black !to-white/10 text-white  py-2 px-4
                  flex justify-center items-center gap-3 
-                 border-[6px] border-[#373737] rounded-[27px] text-[14px] mt-[40px] max-xs:text-[12px] max-xs:px-[10px] max-xs:py-[10px]
+                 !border-[6px] !border-[#373737] rounded-[27px] text-[14px] mt-[40px] max-xs:text-[12px] max-xs:px-[10px] max-xs:py-[10px]
                 "
                     >
                         <a
@@ -61,7 +61,7 @@ export default function Contact() {
                             <a href="mailto:hussenshban200041@gmail.com?subject=Hello&body=I would like to contact you.">hussenshban200041@gmail.com</a>
 
 
-                            <p></p>
+                            <input type="text" className="border-none outline-0 text-black" />
                         </div>
 
                         <div className="text-[#7a7a7a] max-xs:text-[14px]  flex items-start flex-col">

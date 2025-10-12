@@ -2,11 +2,13 @@
 import gsap from "gsap";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import { useEasterEgg } from "../context/EasterEggContext";
 
 const Spider = () => {
   const [messageIndex, setMessageIndex] = useState(0);
   const [on, setOn] = useState(false); 
   const [shakeCount, setShakeCount] = useState(0);
+  const { foundEgg } = useEasterEgg();
 
   const bubble1 = useRef(null);
   const bubble2 = useRef(null);
@@ -102,6 +104,7 @@ const Spider = () => {
               duration: 0.5,
               ease: "power1.out"
             });
+            foundEgg(3)
             return 0; 
           }
           return newCount;
