@@ -23,10 +23,12 @@ export default function Project() {
 
 
             <TitleSection title={"💼 My Projects"} about={"A showcase of what I've built"} />
-            
 
-            <div className="w-[100%]                 max-sm:pt-5 pt-10
- m-auto flex items-center justify-around max-sm:justify-center  flex-wrap gap-10 max-sm:w-[95%] max-sm:gap-2">
+
+            <div className="w-[100%]          
+                   max-sm:pt-5 pt-10
+ m-auto flex items-center justify-around max-sm:justify-center 
+  flex-wrap gap-10 max-sm:w-[95%] ">
 
 
 
