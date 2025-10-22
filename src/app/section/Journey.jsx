@@ -40,7 +40,7 @@ const Journey = () => {
 
     return (
 
-        <section id="Journey" className="flex  items-center justify-center section-padding overflow-hidden  xl:px-0">
+        <section id="Journey" className="flex md:pb-40 pb-20  items-center justify-center section-padding overflow-hidden  xl:px-0">
 
             <div className="h-full md:px-20 px-3  relative  ">
 

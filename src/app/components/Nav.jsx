@@ -53,8 +53,9 @@ const Nav = () => {
                 offset={0}
                 duration={100}
             >
-                <button className="text-[18px]  rounded-[10px]  !bg-white px-5 py-2 text-[#000] cursor-pointer
-            max-sm:px-3 max-sm:py-2 max-sm:text-[16px] border-[1px] hover:bg-black hover:text-white hover:border-[1px] hover:border-white transition
+                <button className="text-[18px]  rounded-[10px]  !bg-white px-5 py-2 !text-[#000] cursor-pointer
+            max-sm:px-3 max-sm:py-2 max-sm:text-[16px] !border-[1px] 
+            hover:!bg-black hover:!text-white  hover:!border-white transition
             ">
 
 

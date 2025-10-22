@@ -17,8 +17,9 @@ const Skills = () => {
                 title={"⚡ Technical Skills"}
                 about={"Languages & Tools"}
             />
-            <div className="flex items-center                 max-sm:pt-5 pt-10
- justify-center gap-10 flex-wrap">
+            <div className="flex items-center           
+                            max-sm:pt-5 pt-10
+                            justify-center gap-10 flex-wrap">
                 {cardimg.map((item, index) => (
                     <Card key={index} img={item.img} />
 
